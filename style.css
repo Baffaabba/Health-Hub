@@ -1,0 +1,156 @@
+/* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: block;
+    }
+} */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+/* hero */
+/* Add styles for header, navigation, etc. */
+
+.hero {
+    position: relative;
+    height: 400px; /* Adjust height as needed */
+    /* overflow: hidden; */
+}
+
+.hero-content {
+    /* position: absolute; */
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+    color: #fff;
+    z-index: 100;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+}
+
+.glide__slide img {
+    width: 100%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .hamburger-menu{
+        display: block;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column; /* Change direction to vertical */
+        background-color: #333; /* Add background color */
+        position: absolute; /*Position the menu absolutely */
+        top: 10vh; /* Position it below the header */
+        left: 0; /* Align with the left edge */
+        width: 100%; /* Occupy full width */
+        padding: 10px 0; /* Add some padding */
+    }
+
+    .nav-links li {
+        display: block; /* Display list items as block elements */
+        margin: 0; /* Remove margin */
+        text-align: center; /* Center-align text */
+        /* margin: 15px; */
+        padding: 20px;
+    }
+
+    .nav-links.active {
+        display: block;
+    }
+}
+
+
+
+
