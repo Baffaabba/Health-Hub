@@ -1,40 +1,53 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.http import JsonResponse
 
-#imports
-from rest_framework import generics, authentication, permissions
-from rest_framework.settings import api_settings
-from rest_framework.generics import CreateAPIView, GenericAPIView
-from rest_framework.authtoken.views import ObtainAuthToken
-from authentication.models import UserDetails
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate
 
-from authentication.serializers import (
-    AuthTokenSerializer,
-    UserProfileSerializer, 
-    UserRegSerializer
-    )
+from .forms import SignUpForm
 
-class UserRegistration(CreateAPIView):
-    """Create new user view"""
-    serializer_class = UserRegSerializer
-    
-    
-class CreateTokenView(ObtainAuthToken):
-    """Create new auth token for user"""
-    serializer_class = AuthTokenSerializer
-    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
-    
+def login_view(request):
+    form = AuthenticationForm(request, data=request.POST)
+    if request.method == 'POST':
+        next = request.META.get('HTTP_REFERER', 'store')
+        if form.is_valid():
+            email = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(request, username=email, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect(next)
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
-    """Retrive and Update authenticated user profile"""
-    serializer_class = UserProfileSerializer
-    authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    return render(request, 'registration/login.html', {'form': form})
 
-    def get_object(self):
-        """Retrive and return authenticated user"""
+def signup_view(request):
 
-        return UserDetails.objects.get(user=self.request.user) 
-    
-class GenerateOtpView(GenericAPIView):
-    # serializer_class = 
-    pass
+    if request.method=='POST':
+        form = SignUpForm(request.POST)
+        next = request.META.get('HTTP_REFERER', 'store')
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            password = form.cleaned_data.get('password')
+            # user = authenticate(request, email=username, password=password)
+            login(request, user)
+            # if request.method=='POST':
+            #     url = reverse(request.POST.get('next'))
+            #     if url:
+            #         return redirect(url)
+            #     else:
+                    #   return redirect('store')
+            return redirect(next or 'store')
+    else:
+        form = SignUpForm()
+
+
+    return render(request, 'registration/signup.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('store') 

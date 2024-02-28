@@ -9,14 +9,14 @@ class Meal(models.Model):
     desc = models.TextField()
     
     is_diabetic = models.BooleanField(default=False)
-    region = models.CharField(max_length=2, choices=[
+    region = models.CharField(max_length=12, choices=[
         ('north', 'North'),
         ('south', 'South'),
         ('east', 'East'),
         ('west', 'West'),
         ])
     gain_weight = models.BooleanField(default=False)
-    time = models.CharField(max_length=2, choices=[
+    time = models.CharField(max_length=12, choices=[
         ('breakfast', 'BreakFast'),
         ('lunch', 'Lunch'),
         ('dinner', 'Dinner'),
