@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User
+from .models import CustomUser
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, get_user_model, password_validation
@@ -28,7 +28,7 @@ class SignUpForm(forms.ModelForm):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('email', 'first_name', 'last_name', 'password', )
 
     def clean_email(self):
@@ -36,7 +36,7 @@ class SignUpForm(forms.ModelForm):
         Verify email is available.
         '''
         email = self.cleaned_data.get('email')
-        qs = User.objects.filter(email=email)
+        qs = CustomUser.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("email is taken")
         return email

@@ -9,16 +9,23 @@ from django.contrib.auth import authenticate
 from .forms import SignUpForm
 
 def login_view(request):
-    form = AuthenticationForm(request, data=request.POST)
     if request.method == 'POST':
-        next = request.META.get('HTTP_REFERER', 'store')
+        form = AuthenticationForm(request, data=request.POST)
+        next = request.META.get('HTTP_REFERER', 'home')
+        if next == "http://127.0.0.1:8000/login/":
+            next = 'home'
         if form.is_valid():
             email = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
             user = authenticate(request, username=email, password=raw_password)
             if user is not None:
+                print("Logging in")
                 login(request, user)
+                print(next)
                 return redirect(next)
+    else:
+        form = AuthenticationForm()
+        
 
     return render(request, 'registration/login.html', {'form': form})
 
@@ -35,17 +42,9 @@ def signup_view(request):
             password = form.cleaned_data.get('password')
             # user = authenticate(request, email=username, password=password)
             login(request, user)
-            # if request.method=='POST':
-            #     url = reverse(request.POST.get('next'))
-            #     if url:
-            #         return redirect(url)
-            #     else:
-                    #   return redirect('store')
             return redirect(next or 'store')
     else:
         form = SignUpForm()
-
-
     return render(request, 'registration/signup.html', {'form': form})
 
 def logout_view(request):

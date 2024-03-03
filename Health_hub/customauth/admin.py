@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, UserDetails
+from .models import CustomUser, UserDetails
 
 # class UserDetailsInline(admin.StackedInline):
 #     model = UserDetails
@@ -35,5 +35,5 @@ from .models import User, UserDetails
 #         UserCarInline,
 #     ]
 
-admin.site.register(User)
+admin.site.register(CustomUser)
 admin.site.register(UserDetails)
