@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Meal(models.Model):
-    image = models.ImageField(upload_to='meals')
+    image = models.ImageField(upload_to='meals', null=True, blank=True)
     name = models.CharField(max_length=255)
     desc = models.TextField()
     

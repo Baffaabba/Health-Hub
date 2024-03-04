@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from .models import CustomUser, UserDetails
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, get_user_model, password_validation
@@ -12,8 +12,8 @@ class SignUpForm(forms.ModelForm):
     last_name = forms.CharField(max_length=30)
     age = forms.CharField(max_length=30)
     region = forms.CharField(max_length=30)
-    diabetic = forms.BooleanField()
-    gain_weight = forms.BooleanField()
+    diabetic = forms.BooleanField(required=False)
+    gain_weight = forms.BooleanField(required=False)
     password = forms.CharField(
         label="Password",
         strip=False,
@@ -21,7 +21,7 @@ class SignUpForm(forms.ModelForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     confirm_password = forms.CharField(
-        label="Password",
+        label="Confirm Password",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         help_text=password_validation.password_validators_help_text_html(),
@@ -29,7 +29,7 @@ class SignUpForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'password', )
+        fields = ('email', 'first_name', 'last_name',)
 
     def clean_email(self):
         '''
@@ -40,7 +40,7 @@ class SignUpForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError("email is taken")
         return email
-
+    
     def clean(self):
         '''
         Verify both passwords match.
@@ -58,6 +58,13 @@ class SignUpForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
+            UserDetails.objects.create(
+                user=user,
+                age=self.cleaned_data["age"],
+                region=self.cleaned_data["region"],
+                is_diabetic=self.cleaned_data["diabetic"],
+                gain_weight=self.cleaned_data["gain_weight"],
+            )
             if hasattr(self, "save_m2m"):
                 self.save_m2m()
         return user

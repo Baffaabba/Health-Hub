@@ -1,0 +1,19 @@
+<h1>Welcome {{request.user.get_fullname}}</h1>
+
+<p>Breakfast</p>
+
+{% for meal in breakfast %}
+    <p>{{meal.name}}</p>
+{% endfor %}
+
+<p>Lunch</p>
+
+{% for meal in lunch %}
+    <p>{{meal.name}}</p>
+{% endfor %}
+
+<p>Dinner</p>
+
+{% for meal in dinner %}
+    <p>{{meal.name}}</p>
+{% endfor %}

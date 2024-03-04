@@ -13,15 +13,13 @@ def login_view(request):
         form = AuthenticationForm(request, data=request.POST)
         next = request.META.get('HTTP_REFERER', 'home')
         if next == "http://127.0.0.1:8000/login/":
-            next = 'home'
+            next = 'dashboard'
         if form.is_valid():
             email = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
             user = authenticate(request, username=email, password=raw_password)
             if user is not None:
-                print("Logging in")
                 login(request, user)
-                print(next)
                 return redirect(next)
     else:
         form = AuthenticationForm()
@@ -33,16 +31,18 @@ def signup_view(request):
 
     if request.method=='POST':
         form = SignUpForm(request.POST)
-        next = request.META.get('HTTP_REFERER', 'store')
+        next = request.META.get('HTTP_REFERER', 'home')
+        if next == "http://127.0.0.1:8000/signup/":
+            next = 'dashboard'
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-            first_name = form.cleaned_data.get('first_name')
-            last_name = form.cleaned_data.get('last_name')
-            password = form.cleaned_data.get('password')
-            # user = authenticate(request, email=username, password=password)
+            # username = form.cleaned_data.get('username')
+            # first_name = form.cleaned_data.get('first_name')
+            # last_name = form.cleaned_data.get('last_name')
+            # password = form.cleaned_data.get('password')
+            # # user = authenticate(request, email=username, password=password)
             login(request, user)
-            return redirect(next or 'store')
+            return redirect(next)
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})

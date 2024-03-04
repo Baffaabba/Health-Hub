@@ -31,9 +31,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
-    is_superuser = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
@@ -43,14 +42,29 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+    def get_fullname(self):
+        return f"{self.first_name} {self.last_name}"
+    
     class Meta:
         verbose_name = 'User'    
         verbose_name_plural = "User's"    
     
 class UserDetails(models.Model):
-    user = models.OneToOneField('CustomUser', blank=True, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField('CustomUser', blank=True, null=True, on_delete=models.CASCADE, related_name='details')
     age = models.IntegerField(blank=True, null=True)
-
+    age = models.IntegerField(default=1)
+    region = models.CharField(max_length=5, choices=[
+        ('north','North'),
+        ('south','South'),
+        ('east','East'),
+        ('west','West'),
+    ], default='north')
+    is_diabetic = models.BooleanField(default=False)
+    gain_weight = models.BooleanField(default=False)
+    
+    def __str__(self) -> str:
+        return f"{self.user.get_fullname()} {self.user.email}"
+    
     class Meta:
         verbose_name = 'Details'    
         verbose_name_plural = "User Details"    
