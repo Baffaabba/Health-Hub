@@ -15,8 +15,10 @@ header {
     align-items: center;
     z-index: 1000;
 }
-.logo {
-    width: 120px;
+.logo img {
+    /* display: none; */
+    width: 6vh;
+    /* height: 40px; */
 }
 nav ul {
     list-style-type: none;
@@ -34,12 +36,14 @@ nav ul {
 .nav-links li a:hover {
  color: brown;
 }
-#signin{
+#signin, #shuffle{
+    cursor: pointer;
     padding: 10px;
+    border: none;
     background-color: brown;
     border-radius: 20px;
 }
-#signin:hover{
+#signin:hover, #shuffle:hover{
     background-color: rgba(165, 42, 42, 0.9);
 }
 #signin a:hover{
@@ -50,48 +54,117 @@ nav ul {
     font-size: 24px;
     cursor: pointer;
 }
-/* hero */
-/* Add styles for header, navigation, etc. */
 
-.hero {
-    /* position: relative; */
-    height: 400px; /* Adjust height as needed */
-    /* overflow: hidden; */
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* margin-top: 50px; */
 }
-
-.hero-content {
-    /* position: relative; */
-    display: contents;
-    /* top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
-    text-align: center;
-    color: #fff;
-    /* z-index: 10; */
-    color: black;
-}
-
-.hero-content h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    top: 50%;
-    /* z-index: 100; */
-}
-
-.hero-content p {
-    font-size: 18px;
-}
-
-.glide__slide img {
-    width: 100%;
-}
-
 .hero img{
+    opacity: 30%;
     width: 100%;
 }
+.hero h1{
+    position: absolute;
+    padding: 20px;
+    color: brown;
+    z-index: inherit;
+}
+.hero p{
+    margin-top: 50px;
+    position: absolute;
+    padding: 20px;
+    color: rgb(36, 36, 36);
+}
 
-/* .hero-content{} */
+h1{
+    margin-bottom: 5px;
+    padding-left: 20px;
+    color: brown;
+}
+p{
+    margin: 0;
+    padding: 0px 20px;
+    color: rgb(36, 36, 36);
+}
+.team ul{
+    /* overflow: hidden; */
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    /* gap: 10px; */
+    list-style-type: none;
 
+}
+.team ul li{
+    padding-top: 10px;
+    background-color: #ffd;
+    border-radius: 15px;
+    text-decoration: none;
+    width: 100px;
+    align-self: center;
+    justify-items: center;
+}
+.team img{
+    width: 80%;
+    justify-self: center;
+}
+h4{
+    /* justify-self: center; */
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    /* width: 80vh; */
+}
+.dashboard div{
+    background-color: aliceblue;
+    border-radius: 20px;
+    /* padding: 10px; */
+    margin: 20px;
+    /* max-width: 70%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard div img{
+    width: 200px;
+    height: 200px;
+}
+/* test start */
+.dashboard div p{
+    overflow: hidden;
+    height: 3.6em;
+    line-height: 1.2em;
+    width: 200px;
+}
+#more:checked + .dashboard div p {
+    height: auto;
+}
+
+.show-more {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+  /* test end */
+.breakfast{
+    color: blue;
+}
+.lunch{
+    color: red;
+}
+.dinner{
+    color: green;
+}
 
 @media screen and (max-width: 768px) {
     .hamburger-menu{
