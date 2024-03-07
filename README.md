@@ -1,3 +1,4 @@
+cd Health_hub
 pip install django
 pip install pillow
 
