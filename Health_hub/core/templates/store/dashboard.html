@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load static %}
+
 <h1>Welcome {{request.user.get_fullname}}</h1>
 
 <p>Breakfast</p>
@@ -17,3 +20,44 @@
 {% for meal in dinner %}
     <p>{{meal.name}}</p>
 {% endfor %}
+
+
+{% block main %}
+<div class="dashboard">
+    <h1>Welcome Bello</h1>
+    <p>Based on the information you provided i.e non diabetic and wants to gain weight the following meal is being recomended for you today.</p>
+    <div class="breakfast">
+        <h2>Breakfast</h2>
+        {% comment %} {% for meal in breakfast %} {% endcomment %}
+        <img src="{{breakfast.image_url}}" alt="breakfast">
+        <h3>{{breakfast.name}}</h3>
+        <p>{{breakfast.desc}}</p>
+        {% comment %} {% endfor %} {% endcomment %}
+    </div>
+    <div class="lunch">
+        <h2>Lunch</h2>
+        {% comment %} {% for meal in lunch %} {% endcomment %}
+        <img src="{{lunch.image_url}}" alt="breakfast">
+        <h3>{{lunch.name}}</h3>
+        <p>{{lunch.desc}}</p>
+        {% comment %} {% endfor %} {% endcomment %}
+    </div>
+    <div class="dinner">
+        <h2>Dinner</h2>
+        {% comment %} {% for meal in dinner %} {% endcomment %}
+        <img src="{{dinner.image_url}}" alt="breakfast">
+        <h3>{{dinner.name}}</h3>
+        <p>{{dinner.desc}}</p>
+        {% comment %} {% endfor %} {% endcomment %}
+    </div>
+    <button id="shuffle" onclick="refresh()" >SHUFFLE</button>            
+</div>
+
+<script>
+    function refresh() {
+        location.reload()
+    }
+</script>
+
+{% endblock main %}
+

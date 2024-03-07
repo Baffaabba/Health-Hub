@@ -25,3 +25,6 @@ class Meal(models.Model):
     def __str__(self) -> str:
         return f"{self.name}"
     
+    def image_url(self):
+        return self.image.url
+    

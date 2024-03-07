@@ -1,20 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
-<h1>Signup Form</h1>
-<form method='post'>
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Signup">
-</form>
-
 {% block head %}
-    <link rel="stylesheet" href="{% static "css/signup.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
 {% endblock head %}
 
 {% block main %}
-    <h2>Signup</h2>
-    <form action="{% url "signup" %}">
-        <!-- FIRST NAME -->
+  <div class="container" style="margin: 80px 10px;">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>Login</header>
+      <form method="post" >
+        {% csrf_token %}
+        <label for="id_username">Email:</label>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="255" required="" id="id_username">
+
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+        <a href="#">Forgot password?</a>
+        <input type="submit" class="button" value="Login">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+         <label for="check">Signup</label>
+        </span>
+      </div>
+    </div>
+    <div class="registration form regtweak">
+      <header>Signup</header>
+      <form action="#">
         <label id="fname" for="fname">First Name:</label>
         <input type="text" id="fname" name="fname" required>
         <!-- LAST NAME -->
@@ -59,10 +72,13 @@
         <label id="cpass" for="cpass">Confirm Password</label>
         <input type="password" id="cpass" name="cpass" required>
 
-        <button type="submit">Sign Up</button>
-        <div>
-            <p>already have an account</p>
-            <a href="login.html">Sign In</a>
-        </div>
-    </form>
+        <input type="submit" class="button" value="Signup">
+      </form>
+      <div class="signup">
+        <span class="signup">Already have an account?
+         <label for="check">Login</label>
+        </span>
+      </div>
+    </div>
+  </div>
 {% endblock main %}

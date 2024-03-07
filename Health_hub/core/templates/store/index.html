@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock head %}
+
+{% block main %}
+    
+    <section class="hero">
+        <img src="{% static "img/R2.jpg" %}" alt="hero icon">
+        <h1>Welcome to Health Hub</h1>
+        <p>Health hub is a platform that advices you on diet {% lorem 1 b random %}</p>
+    </section>
+    <section class="about">
+        <h1>About Us</h1>
+        <p>Health hub is a platform that advices you on diet {% lorem 1 b random %}</p>
+    </section>
+    <section class="services">
+        <h1>Our Services</h1>
+        <p>Health hub is a platform that advices you on diet {% lorem 1 b random %}</p>
+    </section>
+    <section class="team">
+        <h1>Team</h1>
+        <ul>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Bello</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man A</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man B</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man C</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man D</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man E</h4>
+            </li>
+            <li>
+                <img src="{% static "img/man.png" %}" alt="Image">
+                <h4>Man F</h4>
+            </li>
+        </ul>
+    </section>
+    <section></section>
+{% endblock main %}
