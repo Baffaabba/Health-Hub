@@ -17,10 +17,12 @@ def dashboard(request):
     morning = [x for x in meals if x.time=='breakfast']
     afternoon = [x for x in meals if x.time=='lunch']
     night = [x for x in meals if x.time=='dinner']
+    
+    print(morning, afternoon, night)
     context = {
-        'breakfast' : random.choice(morning),
-        'lunch' : random.choice(afternoon),
-        'dinner' : random.choice(night),
+        'breakfast' : random.choice(morning) if len(morning) > 0 else morning,
+        'lunch' : random.choice(afternoon) if len(afternoon) > 0 else afternoon,
+        'dinner' : random.choice(night) if len(night) > 0 else night,
     }
 
     print(user.region, user.is_diabetic, user.gain_weight, meals, context)

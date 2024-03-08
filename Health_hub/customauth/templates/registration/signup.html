@@ -8,18 +8,28 @@
 </form>
 
 {% block head %}
-    <link rel="stylesheet" href="{% static "css/signup.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
 {% endblock head %}
 
 {% block main %}
-    <h2>Signup</h2>
-    <form action="{% url "signup" %}">
-        <!-- FIRST NAME -->
+<div class="container" style="margin: 80px 10px;">
+    <div class="form regtweak">
+        <header>Signup</header>
+        {% if form.errors %}
+            <div class="alert alert-danger mt-3 col-md-6 offset-md-3">
+
+                <p><strong>There are errors in the form:</strong></p>
+                <p> {{ form.errors }} </p>
+            </div>
+        {% endif %}
+	
+        <form method="post">
+        {% csrf_token %}
         <label id="fname" for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" required>
+        <input type="text" id="fname" name="first_name" required>
         <!-- LAST NAME -->
         <label id="lname" for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" required>
+        <input type="text" id="lname" name="last_name" required>
         <!-- EMAIL -->
         <label id="email" for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -30,7 +40,6 @@
         <!-- REGION -->
         <label for="region">Choose a Region:</label>
         <select id="region" class="dropdown" name="region">
-            <option value="none">--- Select Region ---</option>
             <option value="north">North</option>
             <option value="south">South</option>
             <option value="east">East</option>
@@ -39,30 +48,30 @@
         <!-- DIABETIC / AN BE A RADIO BTN-->
         <label for="diabetic">Are You Diabetic</label>
         <select id="diabetic" class="dropdown" name="diabetic">
-            <option value="none">--- Diabetic? ---</option>
-            <option value="north">Diabetic</option>
-            <option value="south">Non-Diabetic</option>
+            <option value="True">Diabetic</option>
+            <option value="False">Non-Diabetic</option>
         </select>
         <!-- WEIGHT -->
         <label for="weight">Are You Gaining or Losing Weight?</label>
-        <select id="weight" class="dropdown" name="weight">
-            <option value="none">--- Weight ---</option>
-            <option value="gain">Gain Weight</option>
-            <option value="lose">Lose Weight</option>
-            <option value="maintain">Maintain Weight</option>
+        <select id="weight" class="dropdown" name="gain_weight">
+            <option value="True">Gain Weight</option>
+            <option value="False">Lose Weight</option>
+            {% comment %} <option value="maintain">Maintain Weight</option> {% endcomment %}
         </select>
 
         <!-- PASSWORD -->
         <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass" required>
+        <input type="password" id="pass" name="password" required>
         <!-- CONFIRM PASSWORD -->
         <label id="cpass" for="cpass">Confirm Password</label>
-        <input type="password" id="cpass" name="cpass" required>
+        <input type="password" id="cpass" name="confirm_password" required>
 
-        <button type="submit">Sign Up</button>
-        <div>
-            <p>already have an account</p>
-            <a href="login.html">Sign In</a>
-        </div>
-    </form>
+        <input type="submit" class="button" value="Signup">
+        </form>
+        <div class="signup">
+        <span class="signup">Already have an account?
+        <label for="check"><a href="{% url "login" %}">Login</a></label>
+        </span>
+  </div>
+  </div>
 {% endblock main %}

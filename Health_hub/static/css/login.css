@@ -12,20 +12,20 @@ body{
   background: #d8e5ee;
 }
 .container{
-  position: absolute;
-  top: 50%;
+  position: relative;
+  /* top: 50%; */
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,0%);
   max-width: 430px;
   width: 100%;
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
-.container .registration{
+/* .container .registration{
   display: none;
-}
-#check:checked ~ .registration{
+} */
+/* #check:checked ~ .registration{
   display: block;
 }
 #check:checked ~ .login{
@@ -33,7 +33,7 @@ body{
 }
 #check{
   display: none;
-}
+} */
 .container .form{
   padding: 2rem;
 }

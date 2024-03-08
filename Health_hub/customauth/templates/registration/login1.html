@@ -5,6 +5,7 @@
 {% endblock head %}
 
 {% block main %}
+  <section>
   <div class="container" style="margin: 80px 10px;">
     <input type="checkbox" id="check">
     <div class="login form">
@@ -21,64 +22,10 @@
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
-         <label for="check">Signup</label>
-        </span>
-      </div>
-    </div>
-    <div class="registration form regtweak">
-      <header>Signup</header>
-      <form action="#">
-        <label id="fname" for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" required>
-        <!-- LAST NAME -->
-        <label id="lname" for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" required>
-        <!-- EMAIL -->
-        <label id="email" for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <!-- AGE -->
-        <label id="age" for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
-
-        <!-- REGION -->
-        <label for="region">Choose a Region:</label>
-        <select id="region" class="dropdown" name="region">
-            <option value="none">--- Select Region ---</option>
-            <option value="north">North</option>
-            <option value="south">South</option>
-            <option value="east">East</option>
-            <option value="west">West</option>
-        </select>
-        <!-- DIABETIC / AN BE A RADIO BTN-->
-        <label for="diabetic">Are You Diabetic</label>
-        <select id="diabetic" class="dropdown" name="diabetic">
-            <option value="none">--- Diabetic? ---</option>
-            <option value="north">Diabetic</option>
-            <option value="south">Non-Diabetic</option>
-        </select>
-        <!-- WEIGHT -->
-        <label for="weight">Are You Gaining or Losing Weight?</label>
-        <select id="weight" class="dropdown" name="weight">
-            <option value="none">--- Weight ---</option>
-            <option value="gain">Gain Weight</option>
-            <option value="lose">Lose Weight</option>
-            <option value="maintain">Maintain Weight</option>
-        </select>
-
-        <!-- PASSWORD -->
-        <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass" required>
-        <!-- CONFIRM PASSWORD -->
-        <label id="cpass" for="cpass">Confirm Password</label>
-        <input type="password" id="cpass" name="cpass" required>
-
-        <input type="submit" class="button" value="Signup">
-      </form>
-      <div class="signup">
-        <span class="signup">Already have an account?
-         <label for="check">Login</label>
+         <label for="check"><a href="{% url "signup" %}">Signup</a></label>
         </span>
       </div>
     </div>
   </div>
+</section>
 {% endblock main %}

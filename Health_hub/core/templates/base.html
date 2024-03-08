@@ -21,6 +21,7 @@
                 <li><a href="{% url "home" %}#about">About US</a></li>
                 <li><a href="{% url "home" %}#services">Our Services</a></li>
                 {% if request.user.is_authenticated %}
+                <li><a href="{% url "logout" %}">Logout</a></li>
                 <li><a href="{% url "dashboard" %}">Dashboard</a></li>
                 {% else %}
                 {% comment %} <li><a href="#register">Register</a></li> {% endcomment %}
@@ -37,15 +38,14 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
+        <div class="container-foot">
         <div class="row">
             <div class="footer-col">
             <h4>Menu</h4>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Our Services</a></li>
-                <li><a href="./templates/policy.html">Privacy Policy</a></li>
+                <li><a href="{% url "home" %}">Home</a></li>
+                <li><a href="{% url "home" %}#about">About Us</a></li>
+                <li><a href="{% url "home" %}#services">Our Services</a></li>
             </ul>
             </div>
             <div class="footer-col">
@@ -55,6 +55,6 @@
         </div>
         {% comment %} <p>© 2023 ASBDATA</p> {% endcomment %}
     </footer>
-    <script src="script.js"></script>    
+    <script src="{% static "js/script.js" %}"></script>    
 </body>
 </html>

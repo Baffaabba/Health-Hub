@@ -34,6 +34,7 @@ def signup_view(request):
     if request.method=='POST':
         form = SignUpForm(request.POST)
         next = request.META.get('HTTP_REFERER', 'home')
+        print(next)
         if next == "http://127.0.0.1:8000/signup/":
             next = 'dashboard'
         if form.is_valid():
@@ -51,4 +52,4 @@ def signup_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('store') 
+    return redirect('home') 

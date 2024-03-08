@@ -11,9 +11,19 @@ class SignUpForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     age = forms.CharField(max_length=30)
-    region = forms.CharField(max_length=30)
-    diabetic = forms.BooleanField(required=False)
-    gain_weight = forms.BooleanField(required=False)
+    region = forms.ChoiceField(choices=[
+        ('north', 'North'),
+        ('south', 'South'),
+        ('east', 'East'),
+    ])
+    diabetic = forms.ChoiceField(choices=[
+        ('True', 'Yes'),
+        ('False', 'No'),
+    ])
+    gain_weight = forms.ChoiceField(choices=[
+        ('True', 'Yes'),
+        ('False', 'No'),
+    ])
     password = forms.CharField(
         label="Password",
         strip=False,
